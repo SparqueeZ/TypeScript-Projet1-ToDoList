@@ -1,31 +1,46 @@
 <template>
   <div class="title">{{ taskStore.name }}</div>
 
+  <TaskForm />
+
   <nav class="filter">
     <button @click="filter = 'all'">All tasks</button>
     <button @click="filter = 'done'">Done tasks</button>
   </nav>
 
-  <section v-if="filter === 'all'" class="tasks-container">
-    <p>All tasks ({{ taskStore.totalCount }})</p>
-    <div class="task" v-for="task in taskStore.tasks" :key="task.id">
-      <TaskDetails :task="task" />
-    </div>
+  <section class="errorMessage" v-if="taskStore.errorMessage">
+    <p>{{ taskStore.errorMessage }}</p>
   </section>
 
-  <section v-if="filter === 'done'" class="tasks-container">
-    <p>Done tasks ({{ taskStore.doneCount }})</p>
-    <div class="task" v-for="task in taskStore.done" :key="task.id">
-      <TaskDetails :task="task" />
-    </div>
+  <section class="loading" v-if="taskStore.loading">
+    <p>Loading Tasks ...</p>
+  </section>
+
+  <section v-if="!taskStore.loading && !taskStore.errorMessage">
+    <section v-if="filter === 'all'" class="tasks-container">
+      <p>All tasks ({{ taskStore.totalCount }})</p>
+      <div class="task" v-for="task in taskStore.tasks" :key="task.id">
+        <TaskDetails :task="task" />
+      </div>
+    </section>
+
+    <section v-if="filter === 'done'" class="tasks-container">
+      <p>Done tasks ({{ taskStore.doneCount }})</p>
+      <div class="task" v-for="task in taskStore.done" :key="task.id">
+        <TaskDetails :task="task" />
+      </div>
+    </section>
   </section>
 </template>
 
 <script setup>
 import TaskDetails from '@/components/TaskDetails.vue'
+import TaskForm from '@/components/TaskForm.vue'
 import { useTaskStore } from '@/stores/taskStore'
 import { ref } from 'vue'
 const taskStore = useTaskStore()
+
+taskStore.getTasks()
 
 const filter = ref('all')
 </script>
@@ -59,8 +74,9 @@ const filter = ref('all')
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
   .task {
-    background-color: var(--color-background-soft);
+    background-color: var(--color-background-mute);
     width: 100%;
     padding: 2rem 4rem;
     display: flex;

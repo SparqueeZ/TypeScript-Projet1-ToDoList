@@ -1,45 +1,39 @@
 # TypeScript | Projet 1 | ToDoList
 
-This template should help get you started developing with Vue 3 in Vite.
+Ce projet est mon premier projet avec [TypeScript](https://www.typescriptlang.org/) et [Pinia](https://pinia.vuejs.org/). Ce projet sert donc d'exemple de projet concret et fonctionnel.
 
-## Recommended IDE Setup
+Afin d'apprendre Pinia j'ai pu m'aider du youtuber "[Net Ninja](https://www.youtube.com/@NetNinja/featured)", un youtuber anglophone spécialisé dans certains langages de programations.
+
+Lien de la playlist : [Playlist](https://www.youtube.com/watch?v=u0B9dysw29A&list=PL4cUxeGkcC9hp28dYyYBy3xoOdoeNw-hD)
+
+Ce projet m'a donc appris à utiliser 'Pinia', mais aussi 'json-server', permettant de créer un serveur local hébergant une "base de données" en JSON. Bien que j'ai les capacités de créer une base de données MySQL, j'ai décidé de le faire en JSON pour des questions de simplicité.
+
+Afin d'apprendre TypeScript je me suis aidé de [ChatGPT](https://chat.openai.com)
+
+## IDE recommandé
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Setup des librairies du projet
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compilation et déploiement du projet
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Installation globale de json-server
 
 ```sh
-npm run build
+npm install -g json-server
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Ouverture du serveur JSON
 
 ```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+json-server -w [chemin-du-fichier-db.json]
 ```
